@@ -335,6 +335,21 @@ const char *AI_Response::DescribeResponse( ResponseType_t type )
 	return "RESPONSE_NONE";
 }
 
+
+
+//-----------------------------------------------------------------------------
+// Purpose: 
+//-----------------------------------------------------------------------------
+const char * AI_Response::GetResponsePtr() const
+{
+    return m_szResponseName;
+}
+
+
+
+
+
+
 //-----------------------------------------------------------------------------
 // Purpose: 
 // Output : const AI_CriteriaSet
