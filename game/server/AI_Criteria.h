@@ -185,6 +185,7 @@ public:
 	const AI_ResponseParams *GetParams() const { return &m_Params; }
 	ResponseType_t	GetType() const { return (ResponseType_t)m_Type; }
 	soundlevel_t	GetSoundLevel() const;
+	const char *    	GetResponsePtr() const;
 	float			GetRespeakDelay() const;
 	float			GetWeaponDelay() const;
 	bool			GetSpeakOnce() const;
@@ -196,6 +197,10 @@ public:
 
 	void			SetContext( const char *context );
 	const char *	GetContext( void ) const { return m_szContext; }
+	
+
+
+	
 
 	bool			IsApplyContextToWorld( void ) { return m_bApplyContextToWorld; }
 

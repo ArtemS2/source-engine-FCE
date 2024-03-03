@@ -23,7 +23,9 @@ games = {
 		'tf/tf_gcmessages_include.vpc',
 		'nav_mesh.vpc',
 		'server_tf.vpc'
-	]
+	],
+	'tf2base': ['server_base.vpc', 'server_tf2base.vpc']
+
 }
 
 def options(opt):
