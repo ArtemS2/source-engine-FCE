@@ -37,7 +37,9 @@ public:
 
 	virtual void OnDataChanged( DataUpdateType_t updateType );
 	virtual void PreDataUpdate( DataUpdateType_t updateType );
-
+	
+	virtual char const *DamageDecal( int bitsDamageType, int gameMaterial );
+	
 	float GetWaveHeight() const;
 	const char *GetDetailSpriteMaterial() const;
 

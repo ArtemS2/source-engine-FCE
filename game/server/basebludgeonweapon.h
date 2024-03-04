@@ -43,6 +43,7 @@ public:
 
 	virtual int		CapabilitiesGet( void );
 	virtual	int		WeaponMeleeAttack1Condition( float flDot, float flDist );
+	virtual void EmitImpactSound() {};
 
 protected:
 	virtual	void	ImpactEffect( trace_t &trace );

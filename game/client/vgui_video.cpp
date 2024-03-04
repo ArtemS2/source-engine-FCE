@@ -103,8 +103,9 @@ bool VideoPanel::BeginPlayback( const char *pFilename )
 
 	// We want to be the sole audio source
 	// FIXME: This may not always be true!
+#ifndef NH2
 	enginesound->NotifyBeginMoviePlayback();
-
+#endif
 	int nWidth, nHeight;
 	m_VideoMaterial->GetVideoImageSize( &nWidth, &nHeight );
 	m_VideoMaterial->GetVideoTexCoordRange( &m_flU, &m_flV );
@@ -247,6 +248,9 @@ void VideoPanel::Paint( void )
 		// Issue a close command
 		OnVideoOver();
 		OnClose();
+#ifdef NH2
+		return;
+#endif
 	}
 
 	// Sit in the "center"

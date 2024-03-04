@@ -9,7 +9,7 @@
 #include "c_baseplayer.h"
 #include "flashlighteffect.h"
 #include "weapon_selection.h"
-#include "history_resource.h"
+#include "nh2/hud_pickups.h"
 #include "iinput.h"
 #include "input.h"
 #include "view.h"
@@ -87,7 +87,7 @@ extern ConVar sensitivity;
 
 static C_BasePlayer *s_pLocalPlayer = NULL;
 
-static ConVar	cl_customsounds ( "cl_customsounds", "1", 0, "Enable customized player sound playback" );
+static ConVar	cl_customsounds ( "cl_customsounds", "0", 0, "Enable customized player sound playback" );
 static ConVar	spec_track		( "spec_track", "0", 0, "Tracks an entity in spec mode" );
 static ConVar	cl_smooth		( "cl_smooth", "1", 0, "Smooth view/eye origin after prediction errors" );
 static ConVar	cl_smoothtime	( 
@@ -221,7 +221,7 @@ END_RECV_TABLE()
 		RecvPropArray3		( RECVINFO_ARRAY(m_iAmmo), RecvPropInt( RECVINFO(m_iAmmo[0])) ),
 		
 		RecvPropInt			( RECVINFO(m_fOnTarget) ),
-
+		RecvPropInt			( RECVINFO(m_nButtons) ),
 		RecvPropInt			( RECVINFO( m_nTickBase ) ),
 		RecvPropInt			( RECVINFO( m_nNextThinkTick ) ),
 
@@ -386,6 +386,7 @@ BEGIN_PREDICTION_DATA( C_BasePlayer )
 	// DEFINE_FIELD( m_pBrightLight, dlight_t* ),
 	DEFINE_PRED_FIELD( m_hLastWeapon, FIELD_EHANDLE, FTYPEDESC_INSENDTABLE ),
 
+	DEFINE_PRED_FIELD( m_nButtons, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
 	DEFINE_PRED_FIELD( m_nTickBase, FIELD_INTEGER, FTYPEDESC_INSENDTABLE ),
 
 	DEFINE_PRED_FIELD( m_hGroundEntity, FIELD_EHANDLE, FTYPEDESC_INSENDTABLE ),
@@ -985,10 +986,10 @@ void C_BasePlayer::OnDataChanged( DataUpdateType_t updateType )
 				if ( !pWeaponData || !( pWeaponData->iFlags & ITEM_FLAG_NOAMMOPICKUPS ) )
 				{
 					// We got more ammo for this ammo index. Add it to the ammo history
-					CHudHistoryResource *pHudHR = GET_HUDELEMENT( CHudHistoryResource );
-					if( pHudHR )
+					CHudPickups *pHudPU = GET_HUDELEMENT( CHudPickups );
+					if( pHudPU )
 					{
-						pHudHR->AddToHistory( HISTSLOT_AMMO, i, abs(GetAmmoCount(i) - m_iOldAmmo[i]) );
+						pHudPU->ShowAmmo(i,abs(GetAmmoCount(i) - m_iOldAmmo[i]));
 					}
 				}
 			}
