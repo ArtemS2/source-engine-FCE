@@ -117,9 +117,9 @@ void cc_GotoNextMapInCycle()
 ConCommand skip_next_map( "skip_next_map", cc_SkipNextMapInCycle, "Skips the next map in the map rotation for the server." );
 ConCommand changelevel_next( "changelevel_next", cc_GotoNextMapInCycle, "Immediately changes to the next map in the map rotation for the server." );
 
-//#ifndef TF_DLL		// TF overrides the default value of this convar
-//ConVar mp_waitingforplayers_time( "mp_waitingforplayers_time", "0", FCVAR_GAMEDLL, "WaitingForPlayers time length in seconds" );
-//#endif
+#if !defined( TF_DLL ) && !defined( TF_MOD )		// TF overrides the default value of this convar
+ConVar mp_waitingforplayers_time( "mp_waitingforplayers_time", "0", FCVAR_GAMEDLL, "WaitingForPlayers time length in seconds" );
+#endif
 
 ConVar mp_waitingforplayers_restart( "mp_waitingforplayers_restart", "0", FCVAR_GAMEDLL, "Set to 1 to start or restart the WaitingForPlayers period." );
 ConVar mp_waitingforplayers_cancel( "mp_waitingforplayers_cancel", "0", FCVAR_GAMEDLL, "Set to 1 to end the WaitingForPlayers period." );
@@ -129,7 +129,7 @@ ConVar mp_clan_ready_signal( "mp_clan_ready_signal", "ready", FCVAR_GAMEDLL, "Te
 ConVar nextlevel( "nextlevel", 
 				  "", 
 				  FCVAR_GAMEDLL | FCVAR_NOTIFY,
-#if defined( CSTRIKE_DLL ) || defined( TF_DLL )
+#if defined( CSTRIKE_DLL ) || defined( TF_DLL ) || defined( TF_MOD )
 				  "If set to a valid map name, will trigger a changelevel to the specified map at the end of the round" );
 #else
 				  "If set to a valid map name, will change to this map during the next changelevel" );
@@ -342,7 +342,7 @@ bool CMultiplayRules::Init()
 	// override some values for multiplay.
 
 		// suitcharger
-#ifndef TF_DLL
+#ifndef TF_DLL && TF_MOD
 //=============================================================================
 // HPE_BEGIN:
 // [menglish] CS doesn't have the suitcharger either
@@ -1374,7 +1374,7 @@ ConVarRef suitcharger( "sk_suitcharger" );
 			g_pStringTableServerMapCycle->AddString( CBaseEntity::IsServer(), "ServerMapCycle", sFileList.Length() + 1, sFileList.String() );
 		}
 
-#if defined ( TF_DLL ) || defined ( TF_CLIENT_DLL )
+#if defined ( TF_DLL ) || defined ( TF_CLIENT_DLL ) // || defined( TF_MOD ) || defined( TF_MOD_CLIENT )
 		if ( g_pStringTableServerPopFiles )
 		{
 			// Search for all pop files that are prefixed with the current map name

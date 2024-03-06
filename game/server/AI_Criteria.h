@@ -185,7 +185,6 @@ public:
 	const AI_ResponseParams *GetParams() const { return &m_Params; }
 	ResponseType_t	GetType() const { return (ResponseType_t)m_Type; }
 	soundlevel_t	GetSoundLevel() const;
-	//fix debug Aptems1 :)
 	const char *    	GetResponsePtr() const;
 	float			GetRespeakDelay() const;
 	float			GetWeaponDelay() const;

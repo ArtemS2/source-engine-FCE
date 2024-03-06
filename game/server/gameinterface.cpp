@@ -826,7 +826,7 @@ bool CServerGameDLL::ReplayInit( CreateInterfaceFn fnReplayFactory )
 float CServerGameDLL::GetTickInterval( void ) const
 {
 	float tickinterval = DEFAULT_TICK_INTERVAL;
-
+#if !defined( TF_DLL ) && !defined( CSTRIKE_DLL ) && !defined( DOD_DLL ) && !defined( TF_MOD )
 	// override if tick rate specified in command line
 	if ( CommandLine()->CheckParm( "-tickrate" ) )
 	{
@@ -834,7 +834,7 @@ float CServerGameDLL::GetTickInterval( void ) const
 		if ( tickrate > 10 )
 			tickinterval = 1.0f / tickrate;
 	}
-
+#endif
 	return tickinterval;
 }
 
@@ -1877,7 +1877,7 @@ void CServerGameDLL::SetServerHibernation( bool bHibernating )
 
 const char *CServerGameDLL::GetServerBrowserMapOverride()
 {
-#ifdef TF_DLL
+#ifdef TF_DLL || TF_MOD
 	if ( TFGameRules() && TFGameRules()->IsMannVsMachineMode() )
 	{
 		const char *pszFilenameShort = g_pPopulationManager ? g_pPopulationManager->GetPopulationFilenameShort() : NULL;
@@ -1894,7 +1894,7 @@ const char *CServerGameDLL::GetServerBrowserGameData()
 {
 	CUtlString sResult;
 
-#ifdef TF_DLL
+#ifdef TF_DLL || TF_MOD
 	sResult.Format( "tf_mm_trusted:%d,tf_mm_servermode:%d", tf_mm_trusted.GetInt(), tf_mm_servermode.GetInt() );
 
 	CMatchInfo *pMatch = GTFGCClientSystem()->GetMatch();

@@ -1666,7 +1666,7 @@ void CHLClient::ResetStringTablePointers()
 	g_pStringTableClientSideChoreoScenes = NULL;
 	g_pStringTableServerMapCycle = NULL;
 
-#ifdef TF_CLIENT_DLL
+#ifdef TF_CLIENT_DLL || TF_MOD_CLIENT
 	g_pStringTableServerPopFiles = NULL;
 	g_pStringTableServerMapCycleMvM = NULL;
 #endif
@@ -1723,7 +1723,7 @@ void CHLClient::LevelShutdown( void )
 
 	messagechars->Clear();
 
-#ifndef TF_CLIENT_DLL
+#ifndef TF_CLIENT_DLL || TF_MOD_CLIENT
 	// don't want to do this for TF2 because we have particle systems in our
 	// character loadout screen that can be viewed when we're not connected to a server
 	g_pParticleSystemMgr->UncacheAllParticleSystems();
@@ -1896,7 +1896,7 @@ void CHLClient::InstallStringTableCallback( const char *tableName )
 	{
 		g_pStringTableServerMapCycle = networkstringtable->FindTable( tableName );
 	}
-#ifdef TF_CLIENT_DLL
+#ifdef TF_CLIENT_DLL || TF_MOD_CLIENT
 	else if ( !Q_strcasecmp( tableName, "ServerPopFiles" ) )
 	{
 		g_pStringTableServerPopFiles = networkstringtable->FindTable( tableName );
@@ -2553,7 +2553,7 @@ void CHLClient::FileReceived( const char * fileName, unsigned int transferID )
 
 void CHLClient::ClientAdjustStartSoundParams( StartSoundParams_t& params )
 {
-#ifdef TF_CLIENT_DLL
+#ifdef TF_CLIENT_DLL || TF_MOD_CLIENT
 	CBaseEntity *pEntity = ClientEntityList().GetEnt( params.soundsource );
 
 	// A player speaking
