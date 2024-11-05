@@ -4,6 +4,10 @@
 //
 //=============================================================================//
 
+#if defined(OF2_DLL) || defined(OF2_CLIENT_DLL)
+
+#endif
+
 #ifndef HL2_GAMERULES_H
 #define HL2_GAMERULES_H
 #ifdef _WIN32

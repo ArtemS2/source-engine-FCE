@@ -270,7 +270,7 @@ void CGameRules::RefreshSkillData ( bool forceUpdate )
 
 	SetSkillLevel( skill.IsValid() ? skill.GetInt() : 1 );
 
-#ifdef HL2_DLL
+#if defined(HL2_DLL) || defined(OF2_DLL)
 	// HL2 current only uses one skill config file that represents MEDIUM skill level and
 	// synthesizes EASY and HARD. (sjb)
 	Q_snprintf( szExec,sizeof(szExec), "exec skill_manifest.cfg\n" );
@@ -335,7 +335,7 @@ void CGameRules::RadiusDamage( const CTakeDamageInfo &info, const Vector &vecSrc
 
 	int bInWater = (UTIL_PointContents ( vecSrc ) & MASK_WATER) ? true : false;
 
-#ifdef HL2_DLL
+#if defined(HL2_DLL) || defined(OF2_DLL)
 	if( bInWater )
 	{
 		// Only muffle the explosion if deeper than 2 feet in water.

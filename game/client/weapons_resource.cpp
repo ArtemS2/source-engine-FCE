@@ -104,7 +104,11 @@ void WeaponsResource::LoadWeaponSprites( WEAPON_FILE_INFO_HANDLE hWeaponFileInfo
 	pWeaponInfo->iconSmall = NULL;
 
 	char sz[128];
-	Q_snprintf(sz, sizeof( sz ), "scripts/%s", pWeaponInfo->szClassName);
+#if defined(OF2_CLIENT_DLL)
+	Q_snprintf(sz, sizeof( sz ), "scripts/weapons/%s", pWeaponInfo->szClassName);
+#else
+	Q_snprintf(sz, sizeof(sz), "scripts/%s", pWeaponInfo->szClassName);
+#endif
 
 	CUtlDict< CHudTexture *, int > tempList;
 

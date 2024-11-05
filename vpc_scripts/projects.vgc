@@ -105,6 +105,7 @@ $Project "classcheck"
 
 $Project "client"
 {
+	"game\client\client_of2.vpc"	        [($WIN32||$X360||$POSIX) && $OF2]
 	"game\client\client_hl2.vpc"		[($WIN32||$X360||$POSIX) && $HL2]
 	"game\client\client_dod.vpc"		[($WIN32||$POSIX) && $DOD]
 	"game\client\client_episodic.vpc"	[($WIN32||$X360||$POSIX) && $EPISODIC]
@@ -354,6 +355,11 @@ $Project "getmirror"
 	"devtools\getmirror\getmirror.vpc" [$WIN32]
 }
 
+$Project "game_shader_generic_of2"
+{
+	"materialsystem\stdshaders\game_shader_generic_of2.vpc" [$OF2]
+}
+
 $Project "glview"
 {
 	"utils\glview\glview.vpc" [$WIN32]
@@ -422,6 +428,7 @@ $Project "sdktoolslib"
 
 $Project "server"
 {
+        "game\server\server_of2.vpc"		[($WIN32||$X360||$POSIX) && $OF2]
 	"game\server\server_hl2.vpc"		[($WIN32||$X360||$POSIX) && $HL2]
 	"game\server\server_dod.vpc"		[($WIN32||$POSIX) && $DOD]
 	"game\server\server_episodic.vpc"	[($WIN32||$X360||$POSIX) && $EPISODIC]
@@ -1404,6 +1411,11 @@ $Project "vpk"
 $Project "vpklib"
 {
 	"vpklib\vpklib.vpc"
+}
+
+$Project "vmf_tweak"
+{
+	"utils\vmf_tweak\vmf_tweak.vpc" [$WIN32]
 }
 
 $Project "vrad_dll"

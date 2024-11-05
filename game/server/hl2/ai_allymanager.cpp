@@ -156,6 +156,20 @@ void CAI_AllyManager::CountAllies( int *pTotal, int *pMedics )
 				( ( ppAIs[i]->GetAbsOrigin() - vPlayerPos ).LengthSqr() > 150*12 ||
 				  fabsf( ppAIs[i]->GetAbsOrigin().z - vPlayerPos.z ) > 192 ) )
 				continue;
+#ifdef OF2_DLL
+			if (FClassnameIs(ppAIs[i], "npc_phoenix"))
+			{
+				//CNPC_Phoenix *pPhoenix = assert_cast<CNPC_Phoenix *>(ppAIs[i]);
+				//if (!pPhoenix->CanJoinPlayerSquad())
+				//	continue;
+
+				//if (pPhoenix->WasInPlayerSquad() && !pPhoenix->IsInPlayerSquad())
+				//	continue;
+				//if ( ppAIs[i]->HasSpawnFlags( SF_CITIZEN_MEDIC ) )
+				//	(*pMedics)++;
+			}
+#endif
+#ifdef HL2_DLL
 
 			if( FClassnameIs( ppAIs[i], "npc_citizen" ) ) 
 			{  
@@ -169,7 +183,7 @@ void CAI_AllyManager::CountAllies( int *pTotal, int *pMedics )
 				if ( ppAIs[i]->HasSpawnFlags( SF_CITIZEN_MEDIC ) )
 					(*pMedics)++;
 			}
-
+#endif
 			(*pTotal)++;
 		}
 	}

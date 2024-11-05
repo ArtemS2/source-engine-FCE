@@ -2799,7 +2799,7 @@ bool CBasePlayer::IsUseableEntity( CBaseEntity *pEntity, unsigned int requiredCa
 bool CBasePlayer::CanPickupObject( CBaseEntity *pObject, float massLimit, float sizeLimit )
 {
 	// UNDONE: Make this virtual and move to HL2 player
-#ifdef HL2_DLL
+#if defined(HL2_DLL) || defined(OF2_DLL)
 	//Must be valid
 	if ( pObject == NULL )
 		return false;
@@ -2840,9 +2840,9 @@ bool CBasePlayer::CanPickupObject( CBaseEntity *pObject, float massLimit, float 
 	if ( checkEnable )
 	{
 		// Allowing picking up of bouncebombs.
-		CBounceBomb *pBomb = dynamic_cast<CBounceBomb*>(pObject);
-		if( pBomb )
-			return true;
+		//CBounceBomb *pBomb = dynamic_cast<CBounceBomb*>(pObject);
+		//if( pBomb )
+			//return true;
 
 		// Allow pickup of phys props that are motion enabled on player pickup
 		CPhysicsProp *pProp = dynamic_cast<CPhysicsProp*>(pObject);
@@ -6149,6 +6149,18 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 
 		EquipSuit();
 
+#ifdef OF2_DLL
+		GiveAmmo(400, "9mm");
+		GiveAmmo(400, "7_62mm");
+		GiveAmmo(400, "5_56mm");
+		GiveAmmo(400, "Slug_Round");
+		GiveAmmo(400, "Combine_Round");
+		GiveAmmo(400, "RPG_Round");
+		GiveAmmo(400, "M16_Grenade");
+		GiveAmmo(400, "Grenade");
+		GiveAmmo(400, "CombineGrenade");
+#else
+
 		// Give the player everything!
 		GiveAmmo( 255,	"Pistol");
 		GiveAmmo( 255,	"AR2");
@@ -6160,9 +6172,23 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 		GiveAmmo( 5,	"grenade");
 		GiveAmmo( 32,	"357" );
 		GiveAmmo( 16,	"XBowBolt" );
+#endif
 #ifdef HL2_EPISODIC
 		GiveAmmo( 5,	"Hopwire" );
-#endif		
+#endif
+#ifdef OF2_DLL
+		GiveNamedItem( "weapon_cfrag" );
+		GiveNamedItem( "weapon_csmg1");
+		GiveNamedItem( "weapon_frag" );
+		GiveNamedItem( "weapon_glock" );
+		GiveNamedItem( "weapon_m16" );
+		GiveNamedItem( "weapon_m40" );
+		GiveNamedItem( "weapon_rpg" );
+		GiveNamedItem( "weapon_shotgun" );
+		GiveNamedItem( "weapon_smg1" );
+		GiveNamedItem( "weapon_wrench" );
+		GiveNamedItem( "weapon_physcannon" );
+#else
 		GiveNamedItem( "weapon_smg1" );
 		GiveNamedItem( "weapon_frag" );
 		GiveNamedItem( "weapon_crowbar" );
@@ -6174,6 +6200,7 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 		GiveNamedItem( "weapon_rpg" );
 		GiveNamedItem( "weapon_357" );
 		GiveNamedItem( "weapon_crossbow" );
+#endif
 #ifdef HL2_EPISODIC
 		// GiveNamedItem( "weapon_magnade" );
 #endif
@@ -7930,7 +7957,9 @@ void SendProxy_CropFlagsToPlayerFlagBitsLength( const SendProp *pProp, const voi
 		SendPropDataTable	( SENDINFO_DT(m_Local), &REFERENCE_SEND_TABLE(DT_Local) ),
 		
 // If HL2_DLL is defined, then baseflex.cpp already sends these.
-#ifndef HL2_DLL
+#if defined(HL2_DLL) || defined(OF2_DLL)
+
+#else
 		SendPropFloat		( SENDINFO_VECTORELEM(m_vecViewOffset, 0), 8, SPROP_ROUNDDOWN, -32.0, 32.0f),
 		SendPropFloat		( SENDINFO_VECTORELEM(m_vecViewOffset, 1), 8, SPROP_ROUNDDOWN, -32.0, 32.0f),
 		SendPropFloat		( SENDINFO_VECTORELEM(m_vecViewOffset, 2), 20, SPROP_CHANGES_OFTEN,	0.0f, 256.0f),

@@ -92,6 +92,7 @@ bool CAI_PolicingBehavior::CanSelectSchedule( void )
 //-----------------------------------------------------------------------------
 void CAI_PolicingBehavior::HostSetBatonState( bool state )
 {
+#ifdef HL2_DLL
 	// If we're a cop, turn the baton on
 	CNPC_MetroPolice *pCop = dynamic_cast<CNPC_MetroPolice *>(GetOuter());
 
@@ -100,6 +101,7 @@ void CAI_PolicingBehavior::HostSetBatonState( bool state )
 		pCop->SetBatonState( state );
 		pCop->SetTarget( m_hPoliceGoal->GetTarget() );
 	}
+#endif
 }
 
 //-----------------------------------------------------------------------------
@@ -108,11 +110,12 @@ void CAI_PolicingBehavior::HostSetBatonState( bool state )
 //-----------------------------------------------------------------------------
 bool CAI_PolicingBehavior::HostBatonIsOn( void )
 {
+#ifdef HL2_DLL
 	// If we're a cop, turn the baton on
 	CNPC_MetroPolice *pCop = dynamic_cast<CNPC_MetroPolice *>(GetOuter());
 	if ( pCop )
 		return pCop->BatonActive();
-
+#endif
 	return false;
 }
 
