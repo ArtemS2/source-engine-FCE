@@ -154,6 +154,29 @@ $Project "Server (OF2)"
 			$File	"hl2\vehicle_crane.h"
 			$File	"hl2\vehicle_prisoner_pod.cpp"
 			$File	"hl2\vehicle_viewcontroller.cpp"
+
+			$File	"hl2\npc_playercompanion.cpp"
+			$File	"hl2\npc_playercompanion.h"
+			$File	"hl2\grenade_bugbait.cpp"
+			$File	"hl2\grenade_bugbait.h"
+
+			$File	"hl2\npc_vortigaunt_episodic.cpp"
+			$File	"hl2\npc_vortigaunt_episodic.h"
+
+			$File	"hl2\npc_antlion.cpp"
+			$File	"hl2\npc_antlion.h"
+			$File	"hl2\antlion_maker.cpp"
+			$File	"hl2\antlion_maker.h"
+
+			$File	"hl2\npc_BaseZombie.cpp"
+			$File	"hl2\npc_BaseZombie.h"
+			$File	"hl2\npc_fastzombie.cpp"
+			$File	"hl2\npc_PoisonZombie.cpp"
+			$File	"hl2\npc_zombie.cpp"
+			$File	"hl2\npc_headcrab.cpp"
+			$File	"hl2\npc_headcrab.h"
+			$File	"hl2\npc_barnacle.cpp"
+			$File	"hl2\npc_barnacle.h"
 			
 			$Folder	"Unused"
 			{
