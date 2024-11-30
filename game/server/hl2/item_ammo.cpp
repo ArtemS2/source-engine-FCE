@@ -38,10 +38,10 @@ int ITEM_GiveAmmo( CBasePlayer *pPlayer, float flCount, const char *pszAmmoName,
 // ========================================================================
 //	>> BoxSRounds
 // ========================================================================
-class CItem_BoxSRounds : public CItem
+class CItem_9MM_PIST : public CItem
 {
 public:
-	DECLARE_CLASS( CItem_BoxSRounds, CItem );
+	DECLARE_CLASS(CItem_9MM_PIST, CItem);
 
 	void Spawn( void )
 	{ 
@@ -55,7 +55,7 @@ public:
 	}
 	bool MyTouch( CBasePlayer *pPlayer )
 	{
-		if (ITEM_GiveAmmo( pPlayer, SIZE_AMMO_PISTOL, "Pistol"))
+		if (ITEM_GiveAmmo( pPlayer, SIZE_AMMO_9MM_PIST, "9mm"))
 		{
 			if ( g_pGameRules->ItemShouldRespawn( this ) == GR_ITEM_RESPAWN_NO )
 			{
@@ -67,42 +67,38 @@ public:
 		return false;
 	}
 };
-LINK_ENTITY_TO_CLASS(item_box_srounds, CItem_BoxSRounds);
-LINK_ENTITY_TO_CLASS(item_ammo_pistol, CItem_BoxSRounds);
+LINK_ENTITY_TO_CLASS(item_ammo_pistol, CItem_9MM_PIST);
 
-// ========================================================================
-//	>> LargeBoxSRounds
-// ========================================================================
-class CItem_LargeBoxSRounds : public CItem
+class CItem_SAW_BOX : public CItem
 {
 public:
-	DECLARE_CLASS( CItem_LargeBoxSRounds, CItem );
+	DECLARE_CLASS(CItem_SAW_BOX, CItem);
 
-	void Spawn( void )
-	{ 
-		Precache( );
-		SetModel( "models/items/boxsrounds.mdl" );
-		BaseClass::Spawn( );
-	}
-	void Precache( void )
+	void Spawn(void)
 	{
-		PrecacheModel ("models/items/boxsrounds.mdl");
+		Precache();
+		SetModel("models/items/boxsrounds.mdl");
+		BaseClass::Spawn();
 	}
-	bool MyTouch( CBasePlayer *pPlayer )
+	void Precache(void)
 	{
-		if (ITEM_GiveAmmo( pPlayer, SIZE_AMMO_PISTOL_LARGE, "Pistol"))
+		PrecacheModel("models/items/boxsrounds.mdl");
+	}
+	bool MyTouch(CBasePlayer *pPlayer)
+	{
+		if (ITEM_GiveAmmo(pPlayer, SIZE_AMMO_SAW_BOX, "Saw_Ammo"))
 		{
-			if ( g_pGameRules->ItemShouldRespawn( this ) == GR_ITEM_RESPAWN_NO )
+			if (g_pGameRules->ItemShouldRespawn(this) == GR_ITEM_RESPAWN_NO)
 			{
-				UTIL_Remove(this);	
+				UTIL_Remove(this);
 			}
+
 			return true;
 		}
 		return false;
 	}
 };
-LINK_ENTITY_TO_CLASS(item_large_box_srounds, CItem_LargeBoxSRounds);
-LINK_ENTITY_TO_CLASS(item_ammo_pistol_large, CItem_LargeBoxSRounds);
+LINK_ENTITY_TO_CLASS(item_ammo_saw_box, CItem_SAW_BOX);
 
 // ========================================================================
 //	>> BoxMRounds
@@ -124,7 +120,7 @@ public:
 	}
 	bool MyTouch( CBasePlayer *pPlayer )
 	{
-		if (ITEM_GiveAmmo( pPlayer, SIZE_AMMO_SMG1, "SMG1"))
+		if (ITEM_GiveAmmo( pPlayer, SIZE_AMMO_9MM, "9MM"))
 		{
 			if ( g_pGameRules->ItemShouldRespawn( this ) == GR_ITEM_RESPAWN_NO )
 			{
@@ -135,8 +131,41 @@ public:
 		return false;
 	}
 };
-LINK_ENTITY_TO_CLASS(item_box_mrounds, CItem_BoxMRounds);
 LINK_ENTITY_TO_CLASS(item_ammo_smg1, CItem_BoxMRounds);
+
+// ========================================================================
+//	>> CSMGAmmo1
+// ========================================================================
+
+class CItem_BoxCSMG : public CItem
+{
+public:
+	DECLARE_CLASS(CItem_BoxCSMG, CItem);
+
+	void Spawn(void)
+	{
+		Precache();
+		SetModel("models/items/boxmrounds.mdl");
+		BaseClass::Spawn();
+	}
+	void Precache(void)
+	{
+		PrecacheModel("models/items/boxmrounds.mdl");
+	}
+	bool MyTouch(CBasePlayer *pPlayer)
+	{
+		if (ITEM_GiveAmmo(pPlayer, SIZE_AMMO_SMG1, "Combine_Round"))
+		{
+			if (g_pGameRules->ItemShouldRespawn(this) == GR_ITEM_RESPAWN_NO)
+			{
+				UTIL_Remove(this);
+			}
+			return true;
+		}
+		return false;
+	}
+};
+LINK_ENTITY_TO_CLASS(item_ammo_csmg, CItem_BoxCSMG);
 
 // ========================================================================
 //	>> LargeBoxMRounds
@@ -158,7 +187,7 @@ public:
 	}
 	bool MyTouch( CBasePlayer *pPlayer )
 	{
-		if (ITEM_GiveAmmo( pPlayer, SIZE_AMMO_SMG1_LARGE, "SMG1"))
+		if (ITEM_GiveAmmo( pPlayer, SIZE_AMMO_9MM_LARGE, "9MM"))
 		{
 			if ( g_pGameRules->ItemShouldRespawn( this ) == GR_ITEM_RESPAWN_NO )
 			{
@@ -168,9 +197,8 @@ public:
 		}
 		return false;
 	}
-};
-LINK_ENTITY_TO_CLASS(item_large_box_mrounds, CItem_LargeBoxMRounds);
-LINK_ENTITY_TO_CLASS(item_ammo_smg1_large, CItem_LargeBoxMRounds);
+};;
+LINK_ENTITY_TO_CLASS(item_ammo_9mm_large, CItem_LargeBoxMRounds);
 
 // ========================================================================
 //	>> BoxLRounds
@@ -469,7 +497,7 @@ public:
 	}
 	bool MyTouch( CBasePlayer *pPlayer )
 	{
-		if (ITEM_GiveAmmo( pPlayer, SIZE_AMMO_SMG1_GRENADE, "SMG1_Grenade"))
+		if (ITEM_GiveAmmo( pPlayer, SIZE_AMMO_SMG1_GRENADE, "M16_Grenade"))
 		{
 			if ( g_pGameRules->ItemShouldRespawn( this ) == GR_ITEM_RESPAWN_NO )
 			{
@@ -481,7 +509,7 @@ public:
 	}
 };
 LINK_ENTITY_TO_CLASS(item_ar2_grenade, CItem_AR2_Grenade);
-LINK_ENTITY_TO_CLASS(item_ammo_smg1_grenade, CItem_AR2_Grenade);
+LINK_ENTITY_TO_CLASS(item_ammo_m16_grenade, CItem_AR2_Grenade);
 
 // ========================================================================
 //	>> BoxSniperRounds
@@ -539,7 +567,7 @@ public:
 	}
 	bool MyTouch( CBasePlayer *pPlayer )
 	{
-		if (ITEM_GiveAmmo( pPlayer, SIZE_AMMO_BUCKSHOT, "Buckshot"))
+		if (ITEM_GiveAmmo( pPlayer, SIZE_AMMO_BUCKSHOT, "Slug_Round"))
 		{
 			if ( g_pGameRules->ItemShouldRespawn( this ) == GR_ITEM_RESPAWN_NO )
 			{
@@ -596,13 +624,13 @@ LINK_ENTITY_TO_CLASS( item_ammo_ar2_altfire, CItem_AR2AltFireRound );
 // Ammo types
 enum
 {
-	AMMOCRATE_SMALL_ROUNDS,
-	AMMOCRATE_MEDIUM_ROUNDS,
-	AMMOCRATE_LARGE_ROUNDS,
+	AMMOCRATE_9MM,
+	AMMOCRATE_M16_ROUNDS,
+	AMMOCRATE_COMBINE_ROUNDS,
 	AMMOCRATE_RPG_ROUNDS,
 	AMMOCRATE_BUCKSHOT,
 	AMMOCRATE_GRENADES,
-	AMMOCRATE_357,
+	AMMOCRATE_50CAL,
 	AMMOCRATE_CROSSBOW,
 	AMMOCRATE_AR2_ALTFIRE,
 	AMMOCRATE_SMG_ALTFIRE,
@@ -698,16 +726,16 @@ const char *CItem_AmmoCrate::m_lpzModelNames[NUM_AMMO_CRATE_TYPES] =
 // Ammo type names
 const char *CItem_AmmoCrate::m_lpzAmmoNames[NUM_AMMO_CRATE_TYPES] =
 {
-	"Pistol",		
-	"SMG1",			
-	"AR2",			
+	"9MM",		
+	"9MM",			
+	"Combine_Round",			
 	"RPG_Round",	
 	"Buckshot",		
 	"Grenade",
-	"357",
+	"50cal",
 	"XBowBolt",
 	"AR2AltFire",
-	"SMG1_Grenade",
+	"M16_Grenade",
 };
 
 // Ammo amount given per +use
@@ -874,7 +902,7 @@ int CItem_AmmoCrate::OnTakeDamage( const CTakeDamageInfo &info )
 	{
 		CBaseCombatWeapon *weapon = player->GetActiveWeapon();
 
-		if (weapon && !stricmp(weapon->GetName(), "weapon_crowbar"))
+		if (weapon && !stricmp(weapon->GetName(), "weapon_wrench"))
 		{
 			// play the normal use sound
 			player->EmitSound( "HL2Player.Use" );
