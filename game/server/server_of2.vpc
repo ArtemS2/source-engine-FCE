@@ -75,6 +75,10 @@ $Project "Server (OF2)"
 			$File	"$SRCDIR\game\shared\of2\of2_gamemovement.cpp"
 			$File	"$SRCDIR\game\shared\of2\of2_gamemovement.h"
 			$File	"of2\weapon_physcannon.cpp"
+			$File	"of2\npc_houndeye.cpp"
+			$File	"of2\npc_houndeye.h"
+			$File	"of2\grenade_energy.cpp"
+			$File	"of2\grenade_energy.h"
 		}
 
 		$Folder	"HL2 DLL"

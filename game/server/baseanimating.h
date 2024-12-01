@@ -375,6 +375,8 @@ protected:
 public:
 	Vector	GetStepOrigin( void ) const;
 	QAngle	GetStepAngles( void ) const;
+	//for HOUNDEYE ArtemS1
+	CNetworkVar( float, m_flCycle );
 
 private:
 	bool				m_bSequenceFinished;// flag set when StudioAdvanceFrame moves across a frame boundry
@@ -383,7 +385,7 @@ private:
 	float				m_flDissolveStartTime;
 
 	// was pev->frame
-	CNetworkVar( float, m_flCycle );
+
 	CNetworkVar( int, m_nSequence );	
 	CNetworkArray( float, m_flPoseParameter, NUM_POSEPAREMETERS );	// must be private so manual mode works!
 	CNetworkArray( float, m_flEncodedController, NUM_BONECTRLS );		// bone controller setting (0..1)
