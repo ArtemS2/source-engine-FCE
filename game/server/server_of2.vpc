@@ -79,6 +79,8 @@ $Project "Server (OF2)"
 			$File	"of2\npc_houndeye.h"
 			$File	"of2\grenade_energy.cpp"
 			$File	"of2\grenade_energy.h"
+			$File	"of2\npc_phoenix.cpp"
+			$File	"of2\npc_phoenix.h"
 		}
 
 		$Folder	"HL2 DLL"
@@ -186,6 +188,10 @@ $Project "Server (OF2)"
 			$File	"hl2\npc_headcrab.h"
 			$File	"hl2\npc_barnacle.cpp"
 			$File	"hl2\npc_barnacle.h"
+
+			$File	"hl2\npc_combinegunship.cpp"
+			$File	"hl2\npc_attackchopper.cpp"
+			$File	"hl2\npc_attackchopper.h"
 			
 			$Folder	"Unused"
 			{

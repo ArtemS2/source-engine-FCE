@@ -1832,6 +1832,8 @@ CAmmoDef *GetAmmoDef()
 		def.AddAmmoType("Grenade",          DMG_BURN,   TRACER_NONE,          "sk_plr_dmg_grenade",      "sk_npc_dmg_grenade",      "sk_max_grenade", 0, 0);
 		def.AddAmmoType("CombineGrenade",   DMG_BLAST, TRACER_NONE,           "sk_plr_dmg_combinegrenade", "sk_npc_dmg_combinegrenade", "sk_max_combinegrenade", 0, 0);
 		
+		//ArtemS1 maybe FIX
+		def.AddAmmoType("CombineCannon",	DMG_BULLET,					TRACER_LINE,			"sk_npc_dmg_gunship_to_plr", "sk_npc_dmg_gunship", NULL, 1.5 * 750 * 12, 0 ); // hit like a 1.5kg weight at 750 ft/s
 
 		def.AddAmmoType("StriderMinigun", DMG_BULLET, TRACER_LINE, 5, 15, 15, 1.0 * 750 * 12, AMMO_FORCE_DROP_IF_CARRIED); // hit like a 1.0kg weight at 750 ft/s
 		def.AddAmmoType("StriderMinigunDirect", DMG_BULLET, TRACER_LINE, 2, 2, 15, 1.0 * 750 * 12, AMMO_FORCE_DROP_IF_CARRIED); // hit like a 1.0kg weight at 750 ft/s
